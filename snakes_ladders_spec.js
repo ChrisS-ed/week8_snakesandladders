@@ -54,7 +54,13 @@ describe('Player', function(){
     assert.equal(player1.checkForWin(), true);
   });
 
-
+  it("should receive points if they win", function() {
+    var player1 = new Player("Valerie");
+    player1.position = 60;
+    player1.move(4);
+    player1.checkForWin();
+    assert.equal(player1.points, 10);
+  })
 
 })
 
@@ -128,15 +134,41 @@ describe('Game', function(){
     myGame.addPlayer(player3);
     myGame.addPlayer(player4);
     myGame.checkWhoPlaysNext();
-    assert.equal(myGame.checkWhoPlaysNext(), "Valerie");
+    assert.equal(myGame.checkWhoPlaysNext(), player1);
   });
 
-  it("should award points to player if they win", function() {
+  it('should change who the next player is with each game turn', function(){
+    var myBoard = new Board();
+    var myGame = new Game(myBoard, [], ["red", "green", "blue", "yellow"]);
     var player1 = new Player("Valerie");
-    player1.position = 60;
-    player1.move(4);
-    player1.checkForWin();
-    assert.equal(player1.points, 10);
-  })
+    var player2 = new Player("Chris");
+    var player3 = new Player("Stuart");
+    var player4 = new Player("Nick");
+    myGame.addPlayer(player1);
+    myGame.addPlayer(player2);
+    myGame.addPlayer(player3);
+    myGame.addPlayer(player4);
+    myGame.gameTurn();
+    assert.equal(myGame.checkWhoPlaysNext(), player2);
+  });
+
+  it('should change who the next player is with each game turn and loop back to first player', function(){
+    var myBoard = new Board();
+    var myGame = new Game(myBoard, [], ["red", "green", "blue", "yellow"]);
+    var player1 = new Player("Valerie");
+    var player2 = new Player("Chris");
+    var player3 = new Player("Stuart");
+    var player4 = new Player("Nick");
+    myGame.addPlayer(player1);
+    myGame.addPlayer(player2);
+    myGame.addPlayer(player3);
+    myGame.addPlayer(player4);
+    myGame.gameTurn();
+    myGame.gameTurn();
+    myGame.gameTurn();
+    myGame.gameTurn();
+    assert.equal(myGame.checkWhoPlaysNext(), player1);
+  });
+
 })
 

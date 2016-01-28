@@ -61,7 +61,17 @@ Game.prototype = {
   },
   checkWhoPlaysNext: function(){
     var theNextPlayer = this.players[this.nextPlayer - 1]
-    return theNextPlayer.name
+    return theNextPlayer;
+  },
+  gameTurn: function(){
+    var currentPlayer = this.checkWhoPlaysNext();
+    currentPlayer.takeTurn();
+    if (currentPlayer.turnOrder < this.players.length) {
+      this.nextPlayer += 1;
+    }
+    else {
+      this.nextPlayer = 1;
+    }
   }
 }
 
