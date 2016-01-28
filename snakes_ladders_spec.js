@@ -50,6 +50,13 @@ describe('Game', function(){
     assert.deepEqual(myGame.counters, ["red", "green", "blue", "yellow"]);
   });
 
+  it('should be able to add players to the game player list', function(){
+    var myBoard = new Board();
+    var myGame = new Game(myBoard, [], ["red", "green", "blue", "yellow"]);
+    var player1 = new Player("Valerie");
+    myGame.addPlayer(player1);
+    assert.deepEqual(myGame.players, [player1]);
+  })
 
 })
 
