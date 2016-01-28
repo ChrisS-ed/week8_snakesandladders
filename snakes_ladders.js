@@ -16,8 +16,18 @@ var Game = function(board, players, counters){
 Game.prototype = {
   addPlayer: function(player) {
     this.players.push(player);
+  },
+  checkEnoughPlayers: function(){
+    if(this.players.length < 4){
+      return false;
+    }
+    else {
+      return true
+    }
   }
 }
+
+
 
 module.exports.Board = Board;
 module.exports.Player = Player;

@@ -56,7 +56,24 @@ describe('Game', function(){
     var player1 = new Player("Valerie");
     myGame.addPlayer(player1);
     assert.deepEqual(myGame.players, [player1]);
-  })
+  }); 
+
+  it("should check if there are enough players to start the game", function() {
+    var myBoard = new Board();
+    var myGame = new Game(myBoard, [], ["red", "green", "blue", "yellow"]);
+    var player1 = new Player("Valerie");
+    myGame.addPlayer(player1);
+    myGame.checkEnoughPlayers();
+    assert.deepEqual(myGame.checkEnoughPlayers(), false);
+    var player2 = new Player("Chris");
+    var player3 = new Player("Stuart");
+    var player4 = new Player("Nick");
+    myGame.addPlayer(player2);
+    myGame.addPlayer(player3);
+    myGame.addPlayer(player4);
+    myGame.checkEnoughPlayers();
+    assert.deepEqual(myGame.checkEnoughPlayers(), true);
+  });
 
 })
 
