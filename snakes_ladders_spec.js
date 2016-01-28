@@ -8,6 +8,7 @@
 
 var Board = require("./snakes_ladders.js").Board;
 var Player = require("./snakes_ladders.js").Player;
+var Game = require("./snakes_ladders.js").Game;
 
 var assert =  require("assert");
 
@@ -33,24 +34,22 @@ describe('Game', function(){
     var myBoard = new Board();
     var myGame = new Game(myBoard, [], ["red", "green", "blue", "yellow"]);
     assert.equal(myGame.board, myBoard);
-  })
-})
+  });
 
-describe('Game', function(){
   // 3. Create game object: board, list of players
-  it("should have list of players, list of counters", function(){
+  it("should have list of players", function(){
     var myBoard = new Board();
     var myGame = new Game(myBoard, [], ["red", "green", "blue", "yellow"]);
-    assert.equal(myGame.players, []);
-  })
-})
+    assert.deepEqual(myGame.players, []);
+  });
 
-describe('Game', function(){
   // 3. Create game object: list of counters
-  it("should have list of players, list of counters", function(){
+  it("should have list of counters", function(){
     var myBoard = new Board();
     var myGame = new Game(myBoard, [], ["red", "green", "blue", "yellow"]);
-    assert.equal(myGame.counters, ["red", "green", "blue", "yellow"]);
-  })
+    assert.deepEqual(myGame.counters, ["red", "green", "blue", "yellow"]);
+  });
+
+
 })
 
