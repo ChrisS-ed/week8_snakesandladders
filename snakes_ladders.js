@@ -19,10 +19,17 @@ Player.prototype = {
     this.position += number;
     }
   },
+  checkForWin: function() {
+    if (this.position === 64)
+      {return true}
+    else
+      {return false};
+  },
   takeTurn: function(){
     var turnRoll = this.roll();
     console.log(this.name + " rolls " + turnRoll);
     this.move(turnRoll);
+    this.checkForWin();
     console.log(this.name + "'s position is now " + this.position);
   }
 }

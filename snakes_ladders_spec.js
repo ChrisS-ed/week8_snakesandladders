@@ -51,7 +51,7 @@ describe('Player', function(){
     var player1 = new Player("Valerie");
     player1.position = 60;
     player1.move(4);
-    assert.equal(player1.position, 64);
+    assert.equal(player1.checkForWin(), true);
   });
 
 
