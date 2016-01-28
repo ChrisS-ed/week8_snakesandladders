@@ -75,5 +75,12 @@ describe('Game', function(){
     assert.deepEqual(myGame.checkEnoughPlayers(), true);
   });
 
+  it('should assign players a counter when they join the game', function(){
+    var myBoard = new Board();
+    var myGame = new Game(myBoard, [], ["red", "green", "blue", "yellow"]);
+    var player1 = new Player("Valerie");
+    myGame.addPlayer(player1);
+    assert.equal(player1.counter, "yellow");
+  });
 })
 
