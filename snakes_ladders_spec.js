@@ -60,6 +60,16 @@ describe('Player', function(){
     player1.move(4);
     player1.checkForWin();
     assert.equal(player1.points, 10);
+  });
+
+  it("should go up a snake if they land on its end point", function() {
+    var player1 = new Player("Valerie");
+    var myBoard = new Board();
+    player1.board = myBoard;
+    player1.position = 10;
+    player1.move(4);
+    player1.checkForSnake();
+    assert.equal(player1.position, 24);
   })
 
 })

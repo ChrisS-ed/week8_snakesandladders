@@ -1,6 +1,10 @@
 
 var Board = function(){
   this.numberOfSquares = 64;
+  this.snakes = [
+  { start: 14, end: 24 }, 
+  { start: 30, end: 40 }
+  ]
 }
 
 var Player = function(name){
@@ -9,6 +13,7 @@ var Player = function(name){
   this.turnOrder = 0;
   this.position = 0;
   this.points = 0;
+  this.board = null;
 }
 
 Player.prototype = {
@@ -28,10 +33,19 @@ Player.prototype = {
     else
       {return false};
   },
+  checkForSnake: function(){
+    for(snake of this.board.snakes) {
+      if(snake.start === this.position){
+        console.log("-------------- Yay! " + this.name + " climbed a snake from space " + this.position + "!-----------------");
+        this.position = snake.end;
+      }
+    }
+  },
   takeTurn: function(){
     var turnRoll = this.roll();
     // console.log(this.name + " rolls " + turnRoll);
     this.move(turnRoll);
+    this.checkForSnake();
     console.log(this.name + "'s position is now " + this.position);
     return this.checkForWin();
  
@@ -51,6 +65,7 @@ Game.prototype = {
     var counterToBeAllocated = this.counters.pop();
     player.counter = counterToBeAllocated; 
     player.turnOrder = this.players.length;
+    player.board = this.board;
   },
   checkEnoughPlayers: function(){
     if(this.players.length < 4){
@@ -96,6 +111,7 @@ myGame.addPlayer(player1);
 myGame.addPlayer(player2);
 myGame.addPlayer(player3);
 myGame.addPlayer(player4);
+
 myGame.gameTurn();
 myGame.gameTurn();
 myGame.gameTurn();
