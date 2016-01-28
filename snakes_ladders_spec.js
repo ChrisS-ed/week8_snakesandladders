@@ -25,8 +25,20 @@ describe('Player', function(){
   it("should have name, counter(colour), score, position, turn_order", function(){
     var player1 = new Player("Valerie");
     assert.equal("Valerie", player1.name);
+  });
+
+
+  it("should be able to roll the dice and get a number between 1 and 6", function(){
+    var player1 = new Player("Valerie");
+    var result = player1.roll();
+    assert.equal(result > 0 && result < 7, true);
   })
+
+
 })
+
+
+
 
 describe('Game', function(){
   // 3. Create game object: board, list of players, list of counters
@@ -81,6 +93,21 @@ describe('Game', function(){
     var player1 = new Player("Valerie");
     myGame.addPlayer(player1);
     assert.equal(player1.counter, "yellow");
+  });
+
+  it('should check whose turn it is', function(){
+    var myBoard = new Board();
+    var myGame = new Game(myBoard, [], ["red", "green", "blue", "yellow"]);
+    var player1 = new Player("Valerie");
+    var player2 = new Player("Chris");
+    var player3 = new Player("Stuart");
+    var player4 = new Player("Nick");
+    myGame.addPlayer(player1);
+    myGame.addPlayer(player2);
+    myGame.addPlayer(player3);
+    myGame.addPlayer(player4);
+    myGame.checkWhoPlaysNext();
+    assert.equal(myGame.checkWhoPlaysNext(), "Valerie");
   });
 })
 
