@@ -38,7 +38,22 @@ describe('Player', function(){
     var player1 = new Player("Valerie");
     player1.move(5);
     assert.equal(player1.position, 5);
-  })
+  });
+
+  it('if roll is higher than spaces left, player does not move', function(){
+    var player1 = new Player("Valerie");
+    player1.position = 62;
+    player1.move(4);
+    assert.equal(player1.position, 62);
+  });
+
+  it('if roll is exactly the same as spaces left, player moves to the last space (and has won)', function(){
+    var player1 = new Player("Valerie");
+    player1.position = 60;
+    player1.move(4);
+    assert.equal(player1.position, 64);
+  });
+
 
 
 })

@@ -15,7 +15,9 @@ Player.prototype = {
     return Math.floor(Math.random() * 6) + 1  
   },
   move: function(number){
+    if (this.position + number <= 64) {
     this.position += number;
+    }
   },
   takeTurn: function(){
     var turnRoll = this.roll();
