@@ -130,5 +130,13 @@ describe('Game', function(){
     myGame.checkWhoPlaysNext();
     assert.equal(myGame.checkWhoPlaysNext(), "Valerie");
   });
+
+  it("should award points to player if they win", function() {
+    var player1 = new Player("Valerie");
+    player1.position = 60;
+    player1.move(4);
+    player1.checkForWin();
+    assert.equal(player1.points, 10);
+  })
 })
 

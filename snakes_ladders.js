@@ -8,6 +8,7 @@ var Player = function(name){
   this.counter = "";
   this.turnOrder = 0;
   this.position = 0;
+  this.points = 0;
 }
 
 Player.prototype = {
@@ -20,17 +21,19 @@ Player.prototype = {
     }
   },
   checkForWin: function() {
-    if (this.position === 64)
-      {return true}
+    if (this.position === 64){
+        this.points += 10;
+        return true;
+      }
     else
       {return false};
   },
   takeTurn: function(){
     var turnRoll = this.roll();
-    console.log(this.name + " rolls " + turnRoll);
+    // console.log(this.name + " rolls " + turnRoll);
     this.move(turnRoll);
-    this.checkForWin();
-    console.log(this.name + "'s position is now " + this.position);
+    return this.checkForWin();
+    // console.log(this.name + "'s position is now " + this.position);
   }
 }
 
