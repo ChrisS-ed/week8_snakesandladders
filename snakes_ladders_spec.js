@@ -32,6 +32,12 @@ describe('Player', function(){
     var player1 = new Player("Valerie");
     var result = player1.roll();
     assert.equal(result > 0 && result < 7, true);
+  });
+
+  it("should be move correct number of squares on board after dice roll", function(){
+    var player1 = new Player("Valerie");
+    player1.move(5);
+    assert.equal(player1.position, 5);
   })
 
 

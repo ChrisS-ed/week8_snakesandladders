@@ -7,11 +7,21 @@ var Player = function(name){
   this.name = name;
   this.counter = "";
   this.turnOrder = 0;
+  this.position = 0;
 }
 
 Player.prototype = {
   roll: function() {
     return Math.floor(Math.random() * 6) + 1  
+  },
+  move: function(number){
+    this.position += number;
+  },
+  takeTurn: function(){
+    var turnRoll = this.roll();
+    console.log(this.name + " rolls " + turnRoll);
+    this.move(turnRoll);
+    console.log(this.name + "'s position is now " + this.position);
   }
 }
 
@@ -42,6 +52,11 @@ Game.prototype = {
     return theNextPlayer.name
   }
 }
+
+// var player1 = new Player("Beth");
+
+// player1.takeTurn();
+
 
 
 
