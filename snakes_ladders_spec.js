@@ -170,5 +170,25 @@ describe('Game', function(){
     assert.equal(myGame.checkWhoPlaysNext(), player1);
   });
 
+  it('should reset the board when game has been won', function(){
+    var myBoard = new Board();
+    var myGame = new Game(myBoard, [], ["red", "green", "blue", "yellow"]);
+    var player1 = new Player("Valerie");
+    var player2 = new Player("Chris");
+    var player3 = new Player("Stuart");
+    var player4 = new Player("Nick");
+    myGame.addPlayer(player1);
+    myGame.addPlayer(player2);
+    myGame.addPlayer(player3);
+    myGame.addPlayer(player4);
+    player1.position = 60;
+    player2.position = 50;
+    player3.position = 20;
+    player1.move(4);
+    var won = player1.checkForWin();
+    if(won){myGame.reset()};
+    assert.equal(player1.position, 0);
+  });
+
 })
 

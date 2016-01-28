@@ -32,8 +32,9 @@ Player.prototype = {
     var turnRoll = this.roll();
     // console.log(this.name + " rolls " + turnRoll);
     this.move(turnRoll);
+    console.log(this.name + "'s position is now " + this.position);
     return this.checkForWin();
-    // console.log(this.name + "'s position is now " + this.position);
+ 
   }
 }
 
@@ -65,19 +66,108 @@ Game.prototype = {
   },
   gameTurn: function(){
     var currentPlayer = this.checkWhoPlaysNext();
-    currentPlayer.takeTurn();
-    if (currentPlayer.turnOrder < this.players.length) {
+    var won = currentPlayer.takeTurn();
+    if(won){
+      console.log("************" + currentPlayer.name + " has won! Game will be reset. *************")
+      this.reset();
+    }
+    else if (currentPlayer.turnOrder < this.players.length) {
       this.nextPlayer += 1;
     }
     else {
       this.nextPlayer = 1;
     }
+  },
+  reset: function(){
+    for(player of this.players){
+      player.position = 0;
+    }
   }
+
 }
 
-// var player1 = new Player("Beth");
+var myBoard = new Board();
+var myGame = new Game(myBoard, [], ["red", "green", "blue", "yellow"]);
+var player1 = new Player("Valerie");
+var player2 = new Player("Chris");
+var player3 = new Player("Stuart");
+var player4 = new Player("Nick");
+myGame.addPlayer(player1);
+myGame.addPlayer(player2);
+myGame.addPlayer(player3);
+myGame.addPlayer(player4);
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
+myGame.gameTurn();
 
-// player1.takeTurn();
 
 
 
